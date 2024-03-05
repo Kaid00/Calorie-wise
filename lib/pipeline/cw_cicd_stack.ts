@@ -49,6 +49,12 @@ export class CwCiCdStack extends cdk.Stack {
     stageName: 'PROD'
   }));
 
+
+  const developmentStage = devPipeline.addStage(new PipelineStage(this, 'PipelineDevStage', {
+    stageName: 'DEV'
+  }));
+
+
   productionStage.addPre(new ManualApprovalStep('Manual approval before deploying to PRODUCTION'))
 
 
