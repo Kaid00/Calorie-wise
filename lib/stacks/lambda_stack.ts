@@ -14,8 +14,8 @@ export class LambdaStack extends Stack {
       
          new NodejsFunction(this, 'helloLambda', {
             runtime: Runtime.NODEJS_18_X,
-            handler: 'hello.main',
-            entry: (join(__dirname, '..' ,'services', 'lambda', 'hello.js')),
+            handler: 'passwordHandler',
+            entry: (join(__dirname, '..' ,'services', 'lambda', 'hello.ts')),
          
         })
    
