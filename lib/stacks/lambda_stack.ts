@@ -4,20 +4,24 @@ import { Runtime } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { join } from "path";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
+import { LambdaIntegration } from "aws-cdk-lib/aws-apigateway";
 
 
 
 export class LambdaStack extends Stack {
+    public readonly lambdaIntegration: LambdaIntegration
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props) 
 
       
-         new NodejsFunction(this, 'helloLambda', {
+        const securePwrdLambda =  new NodejsFunction(this, 'helloLambda', {
             runtime: Runtime.NODEJS_18_X,
             handler: 'passwordHandler',
             entry: (join(__dirname, '..' ,'services', 'lambda', 'hello.ts')),
          
         })
+
+        this.lambdaIntegration = new LambdaIntegration(securePwrdLambda)
    
     }
 }
