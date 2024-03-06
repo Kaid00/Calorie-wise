@@ -5,12 +5,12 @@
 //     let response: APIGatewayProxyResult;
 
 //     try {
-//         switch (event.httpMethod) {
-//             case 'GET':
+        // switch (event.httpMethod) {
+        //     case 'GET':
 
-//             default:
-//                 break;
-//         }
+        //     default:
+        //         break;
+        // }
 //     } catch (error) {
 //         console.error(error)
 

@@ -9,19 +9,19 @@ import { LambdaIntegration } from "aws-cdk-lib/aws-apigateway";
 
 
 export class LambdaStack extends Stack {
-    public readonly lambdaIntegration: LambdaIntegration
+    public readonly pwrdlambdaIntegration: LambdaIntegration
     constructor(scope: Construct, id: string, props?: StackProps) {
         super(scope, id, props) 
 
       
-        const securePwrdLambda =  new NodejsFunction(this, 'helloLambda', {
+        const pwrdGenLambda =  new NodejsFunction(this, 'passwordGenLambda', {
             runtime: Runtime.NODEJS_18_X,
             handler: 'passwordHandler',
-            entry: (join(__dirname, '..' ,'services', 'lambda', 'hello.ts')),
+            entry: (join(__dirname, '..' ,'services', 'password_generator', 'pwrd_gen_handler.ts')),
          
         })
 
-        this.lambdaIntegration = new LambdaIntegration(securePwrdLambda)
+        this.pwrdlambdaIntegration = new LambdaIntegration(pwrdGenLambda)
    
     }
 }

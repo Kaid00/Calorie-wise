@@ -8,9 +8,9 @@ export class PipelineStage extends Stage {
     constructor(scope: Construct, id: string, props: StageProps) {
         super(scope, id, props)
 
-        const lambdaStack = new LambdaStack(this, 'testLambdaStack')
+        const lambdaStack = new LambdaStack(this, 'LambdaStack')
         new ApiStack(this, 'ApiStack', {
-            lambdaIntegration: lambdaStack.lambdaIntegration 
+            lambdaIntegration: lambdaStack.pwrdlambdaIntegration 
         })
       
       
