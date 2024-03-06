@@ -1,20 +1,32 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
+import { getPassword } from "./lambda/get_pwrd";
 
 async function passwordGenHandler(event: APIGatewayProxyEvent, context: Context){
 
+  let response: APIGatewayProxyResult;
 
+  try {
     switch (event.httpMethod) {
-        case 'GET':
+      case 'GET':
+        const getResponse = await getPassword(event)
+        response = getResponse
+        break
+      default:
+        response = {
+          statusCode: 404,
+          body: JSON.stringify("Invalid method"),
+        }
+          break;
+   }
+  } catch (error) {
+      console.error(error)
 
-        default:
-            break;
-    }
-
-    const response: APIGatewayProxyResult = {
-      statusCode: 200,
-      body: JSON.stringify("Hello from password stuffs lambda"),
-    }
-    return response;
+      return {
+          statusCode: 500,
+          body: JSON.stringify('Error occured')
+      }
+  }
+   return response;
     
 }
 
