@@ -8,7 +8,6 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
         const special = event.queryStringParameters['special']
         const number = event.queryStringParameters['number']
         const upper = event.queryStringParameters['upper']
-        const lower = event.queryStringParameters['lower']
         const length = event.queryStringParameters['length']
 
 

@@ -1,5 +1,5 @@
 
-export  function genPassword(numRequired: boolean = false, charRequired: boolean =false, length: number = 12, capsRequired: boolean = false ): string {
+export  function genPassword(number: Boolean = true, special: Boolean = true, length: number = 12, upper: Boolean = true  ): string {
     let passwordArray: string[] = [];
     //generate number
     var generateNumber = () => {
@@ -36,7 +36,7 @@ export  function genPassword(numRequired: boolean = false, charRequired: boolean
         let turn = Math.floor(len/3);
         var rem = len;
 
-        if(charRequired){
+        if(special){
         let temp = Math.floor(turn * Math.random() + 1);
         for(let i=0; i<temp; i++){
             passwordArray.push(generateChar());
@@ -44,7 +44,7 @@ export  function genPassword(numRequired: boolean = false, charRequired: boolean
         rem = rem - temp;
     }
 
-    if(numRequired){
+    if(number){
     let temp = Math.floor(turn * Math.random() + 1);
     for(let i=0; i<temp; i++){
         passwordArray.push(generateNumber());
@@ -53,7 +53,7 @@ export  function genPassword(numRequired: boolean = false, charRequired: boolean
 
     }
 
-    if(capsRequired){
+    if(upper){
     let temp = Math.floor(turn * Math.random() + 1);
     for(let i=0; i<temp; i++){
         passwordArray.push(generateCaps());
@@ -84,7 +84,7 @@ export  function genPassword(numRequired: boolean = false, charRequired: boolean
     console.log(resultArray)
     var output = resultArray.join("")
     console.log(output)
-    return `Should be the results of something: ${output}`;
+    return output;
 }
     
 
