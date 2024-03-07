@@ -1,5 +1,5 @@
 
-export async function genPassword(numRequired: boolean = false, charRequired: boolean =false, length: number = 12, capsRequired: boolean = false ){
+export  function genPassword(numRequired: boolean = false, charRequired: boolean =false, length: number = 12, capsRequired: boolean = false ): string {
     let passwordArray: string[] = [];
     //generate number
     var generateNumber = () => {
