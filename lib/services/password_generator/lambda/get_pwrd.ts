@@ -19,7 +19,7 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
         statusCode: 200,
         body: JSON.stringify({
             status: 'successful',
-            password: JSON.stringify(result)
+            password: result
         })
     }
 }
