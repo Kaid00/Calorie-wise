@@ -1,5 +1,5 @@
 
-async function genPassword(numRequired: boolean = false, charRequired: boolean =false, length: number = 12, capsRequired: boolean = false ){
+export async function genPassword(numRequired: boolean = false, charRequired: boolean =false, length: number = 12, capsRequired: boolean = false ){
     let passwordArray: string[] = [];
     //generate number
     var generateNumber = () => {
@@ -49,7 +49,7 @@ async function genPassword(numRequired: boolean = false, charRequired: boolean =
     for(let i=0; i<temp; i++){
         passwordArray.push(generateNumber());
         }
-    rem = rem - temp;
+        rem = rem - temp;
 
     }
 
@@ -58,11 +58,11 @@ async function genPassword(numRequired: boolean = false, charRequired: boolean =
     for(let i=0; i<temp; i++){
         passwordArray.push(generateCaps());
         }
-    rem = rem - temp;
+        rem = rem - temp;
     }
 
     for(let i=0; i<rem; i++){
-    passwordArray.push(generateSMall());
+        passwordArray.push(generateSMall());
     }
 
     return passwordArray;
@@ -81,10 +81,11 @@ async function genPassword(numRequired: boolean = false, charRequired: boolean =
     }
 
     var resultArray = shuffleArray(generate(length));
+    console.log(resultArray)
     var output = resultArray.join("")
-    return output;
+    console.log(output)
+    return `Should be the results of something: ${output}`;
 }
     
 
 
-export {genPassword}

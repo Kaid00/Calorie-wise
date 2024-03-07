@@ -14,12 +14,14 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
 
     } 
 
-    const result = genPassword()
+    // const result = genPassword()
     return {
         statusCode: 200,
         body: JSON.stringify({
             status: 'successful',
-            password: result
+            password: genPassword()
         })
     }
+
+    
 }
