@@ -1,5 +1,3 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
-
 
 async function genPassword(numRequired: boolean = false, charRequired: boolean =false, length: number = 12, capsRequired: boolean = false ){
     let passwordArray: string[] = [];
