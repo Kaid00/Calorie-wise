@@ -16,7 +16,7 @@ export class LambdaStack extends Stack {
       
         const pwrdGenLambda =  new NodejsFunction(this, 'passwordGenLambda', {
             runtime: Runtime.NODEJS_18_X,
-            handler: 'passwordHandler',
+            handler: 'passwordGenHandler',
             entry: (join(__dirname, '..' ,'services', 'password_generator', 'pwrd_gen_handler.ts')),
          
         })
