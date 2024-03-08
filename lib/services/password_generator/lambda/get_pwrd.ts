@@ -8,6 +8,8 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
         let special: Boolean = true
         let number: Boolean = true
         let upper: Boolean = true
+        let length: number = 15
+        let passwords: string[] = []
         if (event.queryStringParameters['special'] == 'off') {
             special = false
         }
@@ -19,7 +21,24 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
             upper = false
         }
 
-        const length: number = event.queryStringParameters['length'] as unknown as number
+        if (event.queryStringParameters['length'] as unknown as number) {
+            length = event.queryStringParameters['length'] as unknown as number
+        }
+
+        if (event.queryStringParameters['repeat'] as unknown as number) {
+           let repeat = event.queryStringParameters['repeat'] as unknown as number
+            for (let i = 0; i < repeat; i++) {
+                passwords.push(genPassword(number, special, length, upper))
+            }
+
+            return {
+                statusCode: 200,
+                body: JSON.stringify({
+                    status: 'successful and has params',
+                    password: passwords,
+                })
+            }
+        }
 
         return {
             statusCode: 200,
