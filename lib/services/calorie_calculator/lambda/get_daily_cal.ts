@@ -16,9 +16,7 @@ export async function getDailyCalories(event: APIGatewayProxyEvent): Promise<API
             statusCode: 200,
             body: JSON.stringify({
                 status: 'successful',
-                data: JSON.stringify({
-                    goals: calculateDailyCalorieRequirement(age, height, weight, gender, activitylevel)
-                })
+                data: calculateDailyCalorieRequirement(age, height, weight, gender, activitylevel)
             })
         }
     

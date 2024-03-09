@@ -28,14 +28,20 @@ export function calculateDailyCalorieRequirement(age: number, height: number, we
     const weightGain = dailyCalorieRequirement * 1.2;
     const extremeWeightGain = dailyCalorieRequirement * 1.3;
 
+    let result = JSON.stringify({
+        goals: JSON.stringify({
+            maintenance: dailyCalorieRequirement.toFixed(0),
+            mildWeightLoss: mildWeightLoss.toFixed(0),
+            weightLoss: weightLoss.toFixed(0),
+            extremeWeightLoss: extremeWeightLoss.toFixed(0),
+            mildWeightGain: mildWeightGain.toFixed(0),
+            weightGain: weightGain.toFixed(0),
+            extremeWeightGain: extremeWeightGain.toFixed(0)
+        })
+       
+    })
     return {
-        dailyCalorieRequirement: dailyCalorieRequirement.toFixed(0),
-        mildWeightLoss: mildWeightLoss.toFixed(0),
-        weightLoss: weightLoss.toFixed(0),
-        extremeWeightLoss: extremeWeightLoss.toFixed(0),
-        mildWeightGain: mildWeightGain.toFixed(0),
-        weightGain: weightGain.toFixed(0),
-        extremeWeightGain: extremeWeightGain.toFixed(0)
+        result
     };
 }
 
