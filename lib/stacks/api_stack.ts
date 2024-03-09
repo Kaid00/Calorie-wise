@@ -3,7 +3,8 @@ import { LambdaIntegration, RestApi } from "aws-cdk-lib/aws-apigateway";
 import { Construct } from "constructs";
 
 interface ApiStackProps extends StackProps {
-    lambdaIntegration: LambdaIntegration
+    lambdaIntegration: LambdaIntegration,
+    calorieLambdaIntegration: LambdaIntegration
 }
 
 export class ApiStack extends Stack {
@@ -16,8 +17,9 @@ export class ApiStack extends Stack {
         securePwrdResource.addMethod('GET', props?.lambdaIntegration)
 
         // Calorie counter API
-        // const calorieApi = new RestApi(this, 'calorieApi');
-        // const calorieResource = passwordGenApi.root.addResource('dailycalorie')
+        const calorieApi = new RestApi(this, 'calorieApi');
+        const calorieResource = calorieApi.root.addResource('dailycalorie')
+        calorieResource.addMethod('GET', props?.calorieLambdaIntegration)
 
     }
 }

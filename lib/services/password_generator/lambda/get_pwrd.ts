@@ -25,16 +25,16 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
             length = event.queryStringParameters['length'] as unknown as number
         }
 
-        if (event.queryStringParameters['repeat'] as unknown as number) {
+        if (event.queryStringParameters['repeat'] as unknown as number > 1) {
            let repeat = event.queryStringParameters['repeat'] as unknown as number
-            for (let i = 0; i < repeat; i++) {
+            for (let i = 0; i < repeat + 1; i++) {
                 passwords.push(genPassword(number, special, length, upper))
             }
 
             return {
                 statusCode: 200,
                 body: JSON.stringify({
-                    status: 'successful and has params',
+                    status: 'successful',
                     password: passwords,
                 })
             }
@@ -43,7 +43,7 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
         return {
             statusCode: 200,
             body: JSON.stringify({
-                status: 'successful and has params',
+                status: 'successful',
                 password: genPassword(number, special, length, upper),
                 params: `special: ${event.queryStringParameters['special']} \n number: ${event.queryStringParameters['number']}, upper: ${event.queryStringParameters['upper']}, length: ${event.queryStringParameters['length']}`
             })
@@ -51,7 +51,6 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
     
     } 
 
-    // const result = genPassword()
     return {
         statusCode: 200,
         body: JSON.stringify({

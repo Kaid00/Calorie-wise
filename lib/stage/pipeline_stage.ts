@@ -10,7 +10,8 @@ export class PipelineStage extends Stage {
 
         const lambdaStack = new LambdaStack(this, 'LambdaStack')
         new ApiStack(this, 'ApiStack', {
-            lambdaIntegration: lambdaStack.pwrdlambdaIntegration 
+            lambdaIntegration: lambdaStack.pwrdlambdaIntegration,
+            calorieLambdaIntegration: lambdaStack.calorieLambdaIntegration
         })
       
       

@@ -1,16 +1,15 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
+import { getDailyCalories } from "./lambda/get_daily_cal";
 
-async function passwordGenHandler(event: APIGatewayProxyEvent, context: Context){
+async function calorieHandler(event: APIGatewayProxyEvent, context: Context){
 
   let response: APIGatewayProxyResult;
 
   try {
     switch (event.httpMethod) {
       case 'GET':
-        response = {
-          statusCode: 404,
-          body: JSON.stringify("Invalid method"),
-        }
+        const getResponse = await getDailyCalories(event)
+        response = getResponse
         break
       default:
         response = {
@@ -31,4 +30,4 @@ async function passwordGenHandler(event: APIGatewayProxyEvent, context: Context)
     
 }
 
-export {passwordGenHandler}
+export {calorieHandler}
