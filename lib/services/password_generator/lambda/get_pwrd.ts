@@ -44,8 +44,7 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
             statusCode: 200,
             body: JSON.stringify({
                 status: 'successful',
-                password: genPassword(number, special, length, upper),
-                params: `special: ${event.queryStringParameters['special']} \n number: ${event.queryStringParameters['number']}, upper: ${event.queryStringParameters['upper']}, length: ${event.queryStringParameters['length']}`
+                password: genPassword(number, special, length, upper)
             })
         }
     
@@ -61,3 +60,7 @@ export async function getPassword(event: APIGatewayProxyEvent): Promise<APIGatew
 
     
 }
+
+// https://spoonacular.com/recipeImages/657343-556x370.jpg
+// https://spoonacular.com/recipeImages/1697541-556x370.jpg
+// 1697541

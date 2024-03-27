@@ -1,6 +1,6 @@
-import { Stack, StackProps } from "aws-cdk-lib";
+import { Duration, Stack, StackProps } from "aws-cdk-lib";
 import { LambdaFunction } from "aws-cdk-lib/aws-events-targets";
-import { Runtime } from "aws-cdk-lib/aws-lambda";
+import { Runtime, Tracing } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { join } from "path";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
@@ -19,14 +19,16 @@ export class LambdaStack extends Stack {
             runtime: Runtime.NODEJS_18_X,
             handler: 'passwordGenHandler',
             entry: (join(__dirname, '..' ,'services', 'password_generator', 'pwrd_gen_handler.ts')),
-         
+            tracing: Tracing.ACTIVE,
+            timeout: Duration.seconds(10)
         })
 
         const calorieLambda =  new NodejsFunction(this, 'calorieLambda', {
             runtime: Runtime.NODEJS_18_X,
             handler: 'calorieHandler',
             entry: (join(__dirname, '..' ,'services', 'calorie_calculator', 'calorie_handler.ts')),
-         
+            tracing: Tracing.ACTIVE,
+            timeout: Duration.seconds(10)
         })
 
         this.pwrdlambdaIntegration = new LambdaIntegration(pwrdGenLambda)

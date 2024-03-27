@@ -11,12 +11,18 @@ export async function getDailyCalories(event: APIGatewayProxyEvent): Promise<API
         const weight: number = event.queryStringParameters['weight']  as unknown as number
         const gender: string = event.queryStringParameters['gender']  as unknown as string
         const activitylevel: number = event.queryStringParameters['activitylevel']  as unknown as number
+        const weightUnit: string = event.queryStringParameters['weightUnit']  as unknown as string
+
+
+        if (age == undefined) {
+
+        }
 
         return {
             statusCode: 200,
             body: JSON.stringify({
                 status: 'successful',
-                data: calculateDailyCalorieRequirement(age, height, weight, gender, activitylevel)
+                data: calculateDailyCalorieRequirement(age, height, weight, gender, activitylevel, weightUnit)
             })
         }
     
@@ -28,10 +34,6 @@ export async function getDailyCalories(event: APIGatewayProxyEvent): Promise<API
                 password: 'Provide parameters to calculate',
             })
         }
-    
-
-    
-
     
 }
 
