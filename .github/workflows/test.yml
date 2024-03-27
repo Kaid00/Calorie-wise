@@ -1,0 +1,37 @@
+name: Run Jest Tests
+
+on:
+  push:
+    branches:
+      - staging
+      - development
+  pull_request:
+    branches:
+      - master
+      - staging
+      - development
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+
+jobs:
+  jest_tests:
+    name: Run Jest Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Jest Tests
+        run: npm run test
