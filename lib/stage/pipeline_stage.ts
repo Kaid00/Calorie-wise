@@ -2,6 +2,7 @@ import { Stage, StageProps } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { LambdaStack } from "../stacks/lambda_stack";
 import { ApiStack } from "../stacks/api_stack";
+import { MonitorStack } from "../stacks/monitor_stack";
 
 
 export class PipelineStage extends Stage {
@@ -14,6 +15,7 @@ export class PipelineStage extends Stage {
             calorieLambdaIntegration: lambdaStack.calorieLambdaIntegration
         })
       
+        new MonitorStack(this, 'MonitorStack')
       
 
 

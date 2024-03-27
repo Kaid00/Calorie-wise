@@ -16,7 +16,7 @@ export class MonitorStack extends Stack {
         const webhookLambda = new NodejsFunction(this, 'passGenWebHook' , {
             runtime: Runtime.NODEJS_18_X,
             handler: 'monitorHandler',
-            entry: (join(__dirname, '..', '..', 'services', 'monitor', 'monitor_handler.ts'))
+            entry: (join(__dirname, '..', 'services', 'monitor', 'monitor_handler.ts'))
         })
 
         // SNS TOPIC
